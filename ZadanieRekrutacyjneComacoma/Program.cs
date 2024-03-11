@@ -5,9 +5,9 @@ using ZadanieRekrutacyjneComacoma.Models;
 string? folderPath;
 string extension = ".csv";
 
-List<WorkingDay> workingDay = new List<WorkingDay>();
+List<WorkingDay> workingDay = new();
 
-CsvService csvService = new CsvService();
+CsvService csvService = new();
 
 while (true)
 {
@@ -20,7 +20,7 @@ while (true)
             ImportData();
             break;
         case "2":
-            PrintList();
+            workingDay.ForEach(Console.WriteLine);
             break;
         default:
             Console.WriteLine("Niepoprawny wybór");
@@ -118,7 +118,6 @@ void ImportData()
         if (filePath is null)
             return;
 
-
         IObjectMapper? objectMapper = DispalyAndGetFormatMapper();
 
         if (objectMapper is null)
@@ -130,12 +129,5 @@ void ImportData()
     catch
     {
         Console.WriteLine("Wystąpił błąd. Nie udało się zaimportować danych");
-    }
-}
-void PrintList()
-{
-    foreach (var item in workingDay)
-    {
-        Console.WriteLine(item);
     }
 }
